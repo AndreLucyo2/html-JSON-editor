@@ -19,6 +19,18 @@ pre {
     color: #d8801a;
 }
 
+.json-braces {
+    color: #d3d3d3;
+}
+
+.json-colon {
+    color: #808080;
+}
+
+.json-boolean {
+    color: #0070c0;
+}
+
 .json-string {
     color: #3ab54a;
 }
@@ -29,10 +41,6 @@ pre {
 
 .json-null {
     color: #ff0000;
-}
-
-.json-boolean {
-    color: #0070c0;
 }
 
 textarea {

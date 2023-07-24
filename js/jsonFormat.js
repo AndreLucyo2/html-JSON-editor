@@ -1,8 +1,13 @@
-// Syntax highlighting for JSON keys, strings, numbers, dates, {}, and : using JavaScript
-function highlightJSON(json) {
+ // Syntax highlighting for JSON keys, braces, colon, boolean, strings, and numbers using JavaScript
+ function highlightJSON(json) {
     const formattedJSON = json
-        .replace(/"(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:.\d{3}Z?|[+\-]\d{2}:\d{2})?)"/g, '<span class="json-string">"$1"</span>') // Date format
-        .replace(/"(\{|\}|\:)/g, '<span class="json-key">"$1"</span>'); // {}, :
+        .replace(/"(\{|\})"/g, '<span class="json-braces">"$1"</span>') // {} - Chaves de abertura e fechamento
+        .replace(/":/g, '<span class="json-colon">":</span>') // : - Dois pontos
+        .replace(/:\s*true|\s*false/g, '<span class="json-boolean">$&</span>') // Booleanos
+        .replace(/:\s*null/g, '<span class="json-null">$&</span>') // Nulos
+        .replace(/"(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:.\d{3}Z?|[+\-]\d{2}:\d{2})?)"/g, '<span class="json-string">"$1"</span>') // Strings
+        .replace(/:\s*"(.*?)"/g, ': <span class="json-string">"$1"</span>') // Valores de chave são strings
+        .replace(/:\s*(-?\d+(\.\d+)?([eE][+-]?\d+)?)\b/g, ': <span class="json-number">$1</span>'); // Números
 
     return formattedJSON;
 }
@@ -32,7 +37,7 @@ function formatJSON(obj, indentLevel = 0) {
 
     for (const key in obj) {
         if (typeof obj[key] === 'object') {
-            formattedJSON += `${indentSpaces}<span class="json-key">"${key}"</span>: {\n${formatJSON(obj[key], indentLevel + 1)}${indentSpaces}}\n`;
+            formattedJSON += `${indentSpaces}<span class="json-key">"${key}"</span>: {\n${formatJSON(obj[key], indentLevel + 1)}${indentSpaces}},\n`;
         } else {
             formattedJSON += `${indentSpaces}<span class="json-key">"${key}"</span>: ${highlightJSON(JSON.stringify(obj[key]))},\n`;
         }
