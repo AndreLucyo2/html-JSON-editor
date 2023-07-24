@@ -8,15 +8,13 @@
 
 <body>
     <h1>Exemplo de Tema de Cores para Blocos de JSON</h1>
-    <div class="json-block">
-        <pre>
-{
-    <span class="json-key">"name"</span>: <span class="json-string">"John Doe"</span>,
-    <span class="json-key">"age"</span>: <span class="json-number">30</span>,
-    <span class="json-key">"email"</span>: <span class="json-string">"johndoe@example.com"</span>,
-    <span class="json-key">"isSubscribed"</span>: <span class="json-string">true</span>
-}
-        </pre>
+    <div>
+        <button onclick="pasteJSON()">Colar JSON</button>
+        <textarea id="jsonInput" placeholder="Cole o JSON aqui..."></textarea>
+    </div>
+
+    <div class="json-block" id="jsonBlock">
+        <!-- O JSON colado será exibido aqui com realce de sintaxe -->
     </div>
 
     <script type="text/javascript" src="./js/jsonFormat.js"></script>
