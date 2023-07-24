@@ -1,12 +1,12 @@
- // Syntax highlighting for JSON keys, braces, colon, boolean, strings, and numbers using JavaScript
- function highlightJSON(json) {
+// Syntax highlighting for JSON keys, braces, colon, boolean, strings, and numbers using JavaScript
+function highlightJSON(json) {
     const formattedJSON = json
         .replace(/"(\{|\})"/g, '<span class="json-braces">"$1"</span>') // {} - Chaves de abertura e fechamento
         .replace(/":/g, '<span class="json-colon">":</span>') // : - Dois pontos
         .replace(/:\s*true|\s*false/g, '<span class="json-boolean">$&</span>') // Booleanos
         .replace(/:\s*null/g, '<span class="json-null">$&</span>') // Nulos
-        .replace(/"(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:.\d{3}Z?|[+\-]\d{2}:\d{2})?)"/g, '<span class="json-string">"$1"</span>') // Strings
-        .replace(/:\s*"(.*?)"/g, ': <span class="json-string">"$1"</span>') // Valores de chave são strings
+        .replace(/"(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:.\d{3}Z?|[+\-]\d{2}:\d{2})?)"/g, '<span class="json-string">"$1"</span>') // Strings (data)
+        .replace(/:\s*"([^"]*?)"/g, ': <span class="json-string">"$1"</span>') // Strings (delimitado por aspas)
         .replace(/:\s*(-?\d+(\.\d+)?([eE][+-]?\d+)?)\b/g, ': <span class="json-number">$1</span>'); // Números
 
     return formattedJSON;
