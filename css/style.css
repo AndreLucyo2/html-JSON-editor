@@ -11,7 +11,7 @@ pre {
 
 .json-block {
     background-color: #1e1e1e;
-    color: #f8f8f8;
+    color: cyan;
     overflow: auto;
     /* Impede que o conteúdo transborde a div */
 }
@@ -21,11 +21,11 @@ pre {
 }
 
 .json-braces {
-    color: #d3d3d3;
+    color: hsl(244, 79%, 47%);
 }
 
 .json-colon {
-    color: #808080;
+    color: #ed4614;
 }
 
 .json-boolean {
