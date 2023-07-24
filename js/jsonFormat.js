@@ -1,5 +1,5 @@
-// Syntax highlighting for JSON keys, braces, colon, boolean, strings, and numbers using JavaScript
-function highlightJSON(json) {
+ // Syntax highlighting for JSON keys, braces, colon, boolean, strings, and numbers using JavaScript
+ function highlightJSON(json) {
     const formattedJSON = json
         .replace(/"(\{|\})"/g, '<span class="json-braces">"$1"</span>') // {} - Chaves de abertura e fechamento
         .replace(/":/g, '<span class="json-colon">":</span>') // : - Dois pontos
@@ -67,7 +67,7 @@ function pasteJSON() {
 
         const formattedJSON = formatJSON(parsedJSON);
         jsonBlock.innerHTML = '<pre>' + formattedJSON + '</pre>';
-        
+
         const hiddenSection = document.querySelector('.hidden');
         hiddenSection.style.display = 'none';
 
@@ -75,4 +75,14 @@ function pasteJSON() {
     } catch (error) {
         jsonBlock.innerHTML = '<pre>Erro: JSON inválido</pre>';
     }
+}
+
+function clearJSONInput() {
+    const jsonInput = document.getElementById('jsonInput');
+    jsonInput.value = '';
+    const jsonBlock = document.getElementById('jsonBlock');
+    jsonBlock.innerHTML = '';
+
+    const hiddenSection = document.querySelector('.hidden');
+    hiddenSection.style.display = 'block';
 }
