@@ -1,10 +1,10 @@
-// Syntax highlighting for JSON keys, strings, and numbers using JavaScript
+// Syntax highlighting for JSON keys, strings, numbers, dates, {}, and : using JavaScript
 function highlightJSON(json) {
-    const highlightedJSON = json.replace(/(".*?":)/g, '<span class="json-key">$1</span>')
-        .replace(/(".*?")/g, '<span class="json-string">$1</span>')
-        .replace(/(\b\d+\b)/g, '<span class="json-number">$1</span>');
+    const formattedJSON = json
+        .replace(/"(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:.\d{3}Z?|[+\-]\d{2}:\d{2})?)"/g, '<span class="json-string">"$1"</span>') // Date format
+        .replace(/"(\{|\}|\:)/g, '<span class="json-key">"$1"</span>'); // {}, :
 
-    return highlightedJSON;
+    return formattedJSON;
 }
 
 function sortObjectKeys(obj) {

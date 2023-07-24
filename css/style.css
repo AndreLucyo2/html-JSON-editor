@@ -26,6 +26,14 @@ pre {
     color: #c800ff;
 }
 
+.json-null {
+    color: #ff0000;
+}
+
+.json-boolean {
+    color: #0070c0;
+}
+
 textarea {
     width: 100%;
     height: 150px;
