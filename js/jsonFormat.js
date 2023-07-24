@@ -67,7 +67,11 @@ function pasteJSON() {
 
         const formattedJSON = formatJSON(parsedJSON);
         jsonBlock.innerHTML = '<pre>' + formattedJSON + '</pre>';
+        
+        const hiddenSection = document.querySelector('.hidden');
+        hiddenSection.style.display = 'none';
 
+        alert('JSON processado com sucesso!');
     } catch (error) {
         jsonBlock.innerHTML = '<pre>Erro: JSON inválido</pre>';
     }
