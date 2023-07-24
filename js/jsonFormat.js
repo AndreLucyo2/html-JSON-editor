@@ -7,6 +7,25 @@ function highlightJSON(json) {
     return highlightedJSON;
 }
 
+function sortObjectKeys(obj) {
+    if (typeof obj !== 'object' || obj === null) {
+        return obj;
+    }
+
+    if (Array.isArray(obj)) {
+        return obj.map(sortObjectKeys);
+    }
+
+    const sortedObj = {};
+    const keys = Object.keys(obj).sort();
+
+    for (const key of keys) {
+        sortedObj[key] = sortObjectKeys(obj[key]);
+    }
+
+    return sortedObj;
+}
+
 function formatJSON(obj, indentLevel = 0) {
     const indentSpaces = '  '.repeat(indentLevel);
     let formattedJSON = '';
@@ -25,10 +44,16 @@ function formatJSON(obj, indentLevel = 0) {
 function pasteJSON() {
     const jsonInput = document.getElementById('jsonInput');
     const jsonBlock = document.getElementById('jsonBlock');
+    const sortKeysCheckbox = document.getElementById('sortKeys');
     const json = jsonInput.value;
 
     try {
-        const parsedJSON = JSON.parse(json);
+        let parsedJSON = JSON.parse(json);
+
+        if (sortKeysCheckbox.checked) {
+            parsedJSON = sortObjectKeys(parsedJSON);
+        }
+
         const formattedJSON = formatJSON(parsedJSON);
         jsonBlock.innerHTML = '<pre>' + formattedJSON + '</pre>';
     } catch (error) {
