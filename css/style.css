@@ -12,6 +12,7 @@ pre {
 .json-block {
     background-color: #1e1e1e;
     color: #f8f8f8;
+    overflow: auto; /* Impede que o conteúdo transborde a div */
 }
 
 .json-key {
