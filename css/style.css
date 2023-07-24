@@ -9,28 +9,19 @@ pre {
     border-radius: 5px;
 }
 
-.code-block {
+.json-block {
     background-color: #1e1e1e;
     color: #f8f8f8;
 }
 
-.code-block p {
-    margin: 0;
-}
-
-.comment {
-    color: #888;
-}
-
-.keyword {
+.json-key {
     color: #d8801a;
-    font-weight: bold;
 }
 
-.string {
+.json-string {
     color: #3ab54a;
 }
 
-.number {
+.json-number {
     color: #c800ff;
 }

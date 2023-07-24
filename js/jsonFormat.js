@@ -1,13 +1,15 @@
-        // Syntax highlighting for keywords and strings using JavaScript
-        const codeBlocks = document.querySelectorAll('.code-block');
+// Syntax highlighting for JSON keys, strings, and numbers using JavaScript
+const jsonBlocks = document.querySelectorAll('.json-block');
 
-        codeBlocks.forEach((block) => {
-            const lines = block.querySelectorAll('p');
-            lines.forEach((line) => {
-                const text = line.innerHTML;
-                line.innerHTML = text.replace(/(\bconst\b|\bfunction\b|\breturn\b|\bif\b|\belse\b)\b/g, '<span class="keyword">$1</span>');
-                line.innerHTML = line.innerHTML.replace(/\/\/(.*)/g, '<span class="comment">//$1</span>');
-                line.innerHTML = line.innerHTML.replace(/"(.*?)"/g, '<span class="string">"$1"</span>');
-                line.innerHTML = line.innerHTML.replace(/(\d+)/g, '<span class="number">$1</span>');
-            });
-        });
+jsonBlocks.forEach((block) => {
+    const lines = block.querySelectorAll('span');
+    lines.forEach((line) => {
+        if (line.classList.contains('json-key')) {
+            line.innerHTML = line.innerHTML.replace(/(".*?":)/g, '<span class="json-key">$1</span>');
+        } else if (line.classList.contains('json-string')) {
+            line.innerHTML = line.innerHTML.replace(/(".*?")/g, '<span class="json-string">$1</span>');
+        } else if (line.classList.contains('json-number')) {
+            line.innerHTML = line.innerHTML.replace(/(\b\d+\b)/g, '<span class="json-number">$1</span>');
+        }
+    });
+});
