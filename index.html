@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tema de Cores para Blocos de JSON</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 
 <body>
+    <h1>Exemplo de Tema de Cores para Blocos de JSON</h1>
+    <div class="hidden">
+        <label for="sortKeys">Ordenar chaves em ordem alfabética:</label>
+        <input type="checkbox" id="sortKeys">
+        <button onclick="pasteJSON()">Processar JSON</button>
+        <textarea id="jsonInput" placeholder="Cole o JSON aqui..."></textarea>
+    </div>
 
+    <button id="clearButton" onclick="clearJSONInput()">Limpar JSON</button>
+
+    <div class="json-block" id="jsonBlock">
+        <!-- O JSON colado será exibido aqui com realce de sintaxe -->
+    </div>
+
+    <script type="text/javascript" src="./js/jsonFormat.js"></script>
 </body>
 
 </html>
