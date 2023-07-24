@@ -3,7 +3,7 @@ function highlightJSON(json) {
     const formattedJSON = json
         .replace(/"(\{|\})"/g, '<span class="json-braces">"$1"</span>') // {} - Chaves de abertura e fechamento
         .replace(/":/g, '<span class="json-colon">":</span>') // : - Dois pontos
-        .replace(/:\s*true|\s*false/g, '<span class="json-boolean">$&</span>') // Booleanos
+        .replace(/:\s*(true|false)/g, '<span class="json-boolean">$1</span>') // Booleanos
         .replace(/:\s*null/g, '<span class="json-null">$&</span>') // Nulos
         .replace(/"(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:.\d{3}Z?|[+\-]\d{2}:\d{2})?)"/g, '<span class="json-string">"$1"</span>') // Strings (data)
         .replace(/:\s*"([^"]*?)"/g, ': <span class="json-string">"$1"</span>') // Strings (delimitado por aspas)
@@ -67,7 +67,7 @@ function pasteJSON() {
 
         const formattedJSON = formatJSON(parsedJSON);
         jsonBlock.innerHTML = '<pre>' + formattedJSON + '</pre>';
-        
+
     } catch (error) {
         jsonBlock.innerHTML = '<pre>Erro: JSON inválido</pre>';
     }
