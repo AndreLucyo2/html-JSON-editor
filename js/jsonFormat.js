@@ -33,15 +33,21 @@ function sortObjectKeys(obj) {
 
 function formatJSON(obj, indentLevel = 0) {
     const indentSpaces = '  '.repeat(indentLevel);
-    let formattedJSON = '';
+    let formattedJSON = '{\n';
 
     for (const key in obj) {
+        formattedJSON += `${indentSpaces}<span class="json-key">"${key}"</span>: `;
+
         if (typeof obj[key] === 'object') {
-            formattedJSON += `${indentSpaces}<span class="json-key">"${key}"</span>: {\n${formatJSON(obj[key], indentLevel + 1)}${indentSpaces}},\n`;
+            formattedJSON += formatJSON(obj[key], indentLevel + 1);
         } else {
-            formattedJSON += `${indentSpaces}<span class="json-key">"${key}"</span>: ${highlightJSON(JSON.stringify(obj[key]))},\n`;
+            formattedJSON += highlightJSON(JSON.stringify(obj[key]));
         }
+
+        formattedJSON += ',\n';
     }
+
+    formattedJSON += `${'  '.repeat(indentLevel)}}`;
 
     return formattedJSON;
 }
@@ -61,6 +67,7 @@ function pasteJSON() {
 
         const formattedJSON = formatJSON(parsedJSON);
         jsonBlock.innerHTML = '<pre>' + formattedJSON + '</pre>';
+        
     } catch (error) {
         jsonBlock.innerHTML = '<pre>Erro: JSON inválido</pre>';
     }
