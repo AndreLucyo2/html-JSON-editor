@@ -10,6 +10,7 @@ function pasteJSON() {
 
         if (sortKeysCheckbox.checked) {
             parsedJSON = sortObjectKeys(parsedJSON);
+            console.log(parsedJSON);
         }
 
         const formattedJSON = formatJSON(parsedJSON);
